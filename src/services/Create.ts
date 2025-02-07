@@ -13,7 +13,6 @@ export const myFetch = async (blog_id: number) => {
 
 
 
-
 // --------------------------------------------------------------create
 interface Comment {
   name: string;

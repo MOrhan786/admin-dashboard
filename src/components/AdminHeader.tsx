@@ -1,13 +1,13 @@
 "use client";
 
 import { LayoutDashboard } from "lucide-react";
- import { logout } from "@/services/auth"; // Import the logout function
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { logout } from "@/services/auth";
 
 export function AdminHeader() {
   const router = useRouter();
-
+  
   // ✅ Logout handler
   const handleLogout = async () => {
     await logout(); // Call the server function

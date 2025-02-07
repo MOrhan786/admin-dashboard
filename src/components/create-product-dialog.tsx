@@ -2,8 +2,7 @@
 "use client";
 
 import { useState } from "react";
-// import { ImagePlus } from "lucide-react";
-// import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -22,14 +21,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {  ICard } from "@/services/sanityApi";
-// import { useRef } from "react";
+import {  ICar } from "@/services/sanityApi";
+import { useRef } from "react";
 
 interface EditProductDialogProps {
-  product: ICard;
+  product: ICar;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSave: (product: ICard) => void;
+  onSave: (product: ICar) => void;
   categoryDropdown: string[];
 }
 
@@ -43,7 +42,7 @@ export function CreateProductDialog({
 
 
   //--------------------------------------------------States
-  const [product, setProduct] = useState<ICard>(initialProduct);
+  const [product, setProduct] = useState<ICar>(initialProduct);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSave = async () => {
@@ -66,7 +65,7 @@ export function CreateProductDialog({
         <DialogHeader>
           <DialogTitle>Create New Product</DialogTitle>
           <DialogDescription>
-          <p>Add a new product to your store. Click save when you&apos;re done.</p>
+            Add a new product to your store. Click save when you are done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-6 py-4">
@@ -80,9 +79,9 @@ export function CreateProductDialog({
                 <Label htmlFor="name">Name</Label>
                 <Input
                   id="name"
-                  value={product._id}
+                  value={product.name}
                   onChange={(e) =>
-                    setProduct({ ...product, _id: e.target.value })
+                    setProduct({ ...product, name: e.target.value })
                   }
                 />
               </div>
@@ -93,7 +92,7 @@ export function CreateProductDialog({
                   type="number"
                   value={product.pricePerDay}
                   onChange={(e) =>
-                    setProduct({ ...product, pricePerDay : Number(e.target.value) })
+                    setProduct({ ...product, pricePerDay:(e.target.value) })
                   }
                 />
               </div>
@@ -102,9 +101,9 @@ export function CreateProductDialog({
               <div className="grid gap-2">
                 <Label htmlFor="category">Category</Label>
                 <Select
-                  value={product._type}
+                  value={product.category}
                   onValueChange={(value) =>
-                    setProduct({ ...product, _type: value })
+                    setProduct({ ...product, category: value })
                   }
                 >
                   <SelectTrigger>
@@ -120,27 +119,27 @@ export function CreateProductDialog({
                 </Select>
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="stock">Stock</Label>
+                <Label htmlFor="stock">Available</Label>
                 <Input
                   id="stock"
                   type="number"
-                  value={product.originalPrice}
+                  value={product.inventory}
                   onChange={(e) =>
                     setProduct({
                       ...product,
-                      originalPrice: Number(e.target.value),
+                      inventory: Number(e.target.value),
                     })
                   }
                 />
               </div>
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="transmission">transmission</Label>
+              <Label htmlFor="description">Description</Label>
               <Textarea
-                id="transmission"
-                value={product.transmission}
+                id="description"
+                value={product.description}
                 onChange={(e) =>
-                  setProduct({ ...product, transmission: e.target.value })
+                  setProduct({ ...product, description: e.target.value })
                 }
               />
             </div>
